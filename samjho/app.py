@@ -270,9 +270,11 @@ if st.session_state.analysis_result:
     st.markdown("### 🇮🇳 Explain in Hindi / Hinglish")
     if st.button("🗣️ Explain in Hindi (सरल भाषा में समझाइए)"):
         with st.spinner("Preparing Hindi explanation from verified facts..."):
-            hindi_text = generate_hindi_explanation(res, base_url=ollama_url, model=model_name)
-            st.session_state.hindi_explanation = hindi_text
-
+            try:
+                hindi_text = generate_hindi_explanation(res, base_url=ollama_url, model=model_name)
+                st.session_state.hindi_explanation = hindi_text
+            except SAMJHOAIError as e:
+                st.error(str(e))
     if st.session_state.hindi_explanation:
         st.markdown(f"""
         <div class="card-box" style="background-color: #fff7ed; border-color: #ffedd5;">
