@@ -1,0 +1,6 @@
+{
+  "name": "SAMJHO — AI Document Understanding",
+  "description": "Don't just translate. Understand. Private AI assistant that turns confusing notices, forms, and bank letters into clear actions with verified proof and Hindi explanations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
