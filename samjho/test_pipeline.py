@@ -105,6 +105,19 @@ def run_tests():
     else:
         print(f"✗ Test 5 Failed: Batch validation mismatch: {batch_res}")
 
+    # ----------------------------------------------------
+    # TEST CASE 6: Real quote that does NOT support the claim (must be UNVERIFIED)
+    # ----------------------------------------------------
+    total += 1
+    id_doc = [{"page": 1, "text": "Application Number: 260410100893. IP Address: 157.48.234.54. Date: 01 March 2026."}]
+    res6 = verify_single_evidence("Application Number: 260410100893", "IP Address: 157.48.234.54", 1, id_doc)
+    res6_ok = verify_single_evidence("Application Number: 260410100893", "Application Number: 260410100893", 1, id_doc)
+    if (not res6["verified"]) and res6_ok["verified"]:
+        print("✓ Test 6 Passed: Unrelated real quote rejected; matching quote verified.")
+        passed += 1
+    else:
+        print(f"✗ Test 6 Failed: {res6} / {res6_ok}")
+
     print("==================================================")
     print(f"Result: {passed}/{total} Test Cases Passed Successfully.")
     print("==================================================")
